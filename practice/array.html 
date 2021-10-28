@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+    var my_arr = [1, 2, "其它文字", "test"];console.log(my_arr[0]); // 1console.log(my_arr[1]); // 2console.log(my_arr[2]); // "其它文字"console.log(my_arr[3]); // "test"
+     
+    </script>
+  </body>
+</html>

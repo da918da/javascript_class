@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+            console.time("計算");
+            var j;
+            for (var i = 0; i < 100000000; i++) {
+              j = Math.random();
+            }
+            //   console.timeEnd("計算");
+
+            //   練習 2
+            let my_arr = [];
+            for (let i = 1; i <= 5000000; i++) {
+              my_arr.push(i);
+            }
+            // [1, 2, 3, 4, 5, ..., 4999999, 5000000]
+
+      //       console.time("time1");
+
+      //       let find_value = Math.floor(Math.random() * 5000000) + 1; // 隨機 1 ~ 5000000
+      //       let find_value_index;
+      //       let loop_times = 0; // 記錄迴圈跑幾次
+
+      //       for (let i = 0; i < my_arr.length; i++) {
+      //         // 寫這裡的邏輯
+
+      //       }
+      //       console.log(
+      //         "找到 " +
+      //           find_value +
+      //           "，索引值：" +
+      //           find_value_index +
+      //           "。迴圈共跑了 " +
+      //           loop_times +
+      //           " 次。"
+      //       );
+
+      //       console.timeEnd("time1");
+
+      //       // 所花時間：方式一
+
+      // console.time("time1");
+
+      // let find_value = (Math.floor(Math.random() * 5000000) + 1);
+      // let find_value_index;
+      // let loop_times = 0; // 記錄迴圈跑幾次
+
+      // // [1, 2, 3, 4, 5]
+      // for(let i = 0; i < my_arr.length; i++){
+      //   loop_times++;
+      //   if(find_value === my_arr[i]){
+      //     find_value_index = i;
+      //     break;
+      //   }
+      // }
+      // console.log("找到 " + find_value + "，索引值：" + find_value_index + "。迴圈共跑了 " + loop_times + " 次。");
+
+      // console.timeEnd("time1");
+
+
+      // 13
+      // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+      // 所花時間：方式二
+      /*
+      console.time("time2");
+
+      let find_value = (Math.floor(Math.random() * 5000000) + 1);
+      let find_value_index;
+
+      let target_index_min = 0;
+      let target_index_max = my_arr.length - 1;
+      let target_index = Math.floor( (target_index_min + target_index_max) / 2);
+      let loop_times = 0; // 記錄迴圈跑幾次
+
+      for(let i = 0; i < my_arr.length; i++){
+        loop_times++;
+        if( find_value === my_arr[target_index] ){
+          find_value_index = target_index;
+          break;
+        }else if(find_value > my_arr[target_index]){
+          target_index_min = target_index;
+          target_index_max = target_index_max;
+          target_index = Math.floor( (target_index_min + target_index_max) / 2);
+        }else{
+          target_index_min = target_index_min;
+          target_index_max = target_index;
+          target_index = Math.floor( (target_index_min + target_index_max) / 2);
+        }
+
+      }
+
+      console.log("找到 " + find_value + "，索引值：" + find_value_index + "。迴圈共跑了 " + loop_times + " 次。");
+
+
+      console.timeEnd("time2");
+    </script>
+  </body>
+</html>

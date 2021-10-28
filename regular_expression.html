@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 定義一個比對的規則：字串內，一定要有「the book」。
+      // \s{1} 表示僅能有1個空格。
+      var pattern = /the\s{1}book/;
+      // 或以下這個寫法
+      //var pattern = new RegExp(/the\s{1}book/, "i");
+
+      // 想要比對的字串
+      var str = "the book"; // 測試這個 → true
+      //var str = "The book"; // 再測試這個(大小寫有分) → false
+
+      //   alert(pattern.test(str));
+
+      //   行動電話號碼
+      var pattern = /^09\d{8}$/;
+
+      var str = "0928035055";
+
+      console.log(pattern.test(str));
+    </script>
+  </body>
+</html>
