@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      action="https://tibamef2e.com/demo-personal/T1901166/#/"
+      method="get"
+      id="my_form"
+    >
+      <input type="text" name="username" id="my_text" />
+      <button type="submit">資料送出</button>
+    </form>
+
+    <script>
+      var my_form = document.getElementById("my_form");
+      my_form.addEventListener("submit", function (e) {
+        // 資料送出時，執行這裡的程式
+        // e.preventDefault(); //使用者沒填資料時 停掉表單資料送出
+        let input_el = document.getElementById("my_text");
+
+        // console.log();
+        if (input_el.value == "") {
+          e.preventDefault();
+          alert("請輸入資料");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    input.card {
+      width: 42px;
+    }
+    .-error {
+      border: 1px solid red;
+    }
+  </style>
+  <body>
+    <form action="#" method="#" id="the_form">
+      <div class="group">
+        <label>帳號：</label>
+        <input type="text" id="account" />
+      </div>
+
+      <div class="group">
+        <label>email：</label>
+        <input type="email" id="email" />
+      </div>
+
+      <div class="group">
+        <label>信用卡卡號：</label>
+        <input type="text" class="card" maxlength="4" />
+        <input type="text" class="card" maxlength="4" />
+        <input type="text" class="card" maxlength="4" />
+        <input type="text" class="card" maxlength="4" />
+      </div>
+
+      <div class="group">
+        <label>商品數量：</label>
+        <input type="range" min="1" max="10" value="5" class="product_count" />
+        <span class="num" data-default="5">5</span>
+      </div>
+
+      <div class="group">
+        <button type="reset">清空</button>
+        <button type="submit">資料送出</button>
+      </div>
+    </form>
+
+    <script src="./vendors/is.min.js"></script>
+    <script>
+      // 一介面調整：
+      // 1.信用卡介面：keydown、keyup、focus
+      // 2.商品數量的介面：mousemove、reset 事件
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var cards = document.getElementsByClassName("card");
+
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].addEventListener("keydown", function (e) {
+            // console.log(e.which);
+            // e.preventDefault(); //這行中英就不能打字了
+            if ((e.which >= 48 && e.which <= 57) || e.which == 8) {
+              //   console.log(e.target.value.length);
+              if (e.target.value.length == 0 && e.which == 8) {
+                // console.log("test");
+                let previous_el = this.previousElementSibling;
+                // console.log(previous_el);
+                previous_el.focus(); //前一欄可以一起刪除
+              }
+            } else {
+              e.preventDefault();
+            }
+          });
+
+          cards[i].addEventListener("keyup", function (e) {
+            // console.log("test2");
+            // console.log(e.target.value);
+            let str = e.target.value.replace(/\D/gi, ""); //頁面不可輸入中文
+            // console.log(str);
+            e.target.value = str;
+
+            if (str.length == 4) {
+              let next_el = this.nextElementSibling; //輸入四個後跳下一個欄位
+              console.log(next_el);
+              if (next_el) {
+                next_el.focus();
+              }
+            }
+          });
+        }
+
+        //商品數量
+        var product_count_el =
+          document.getElementsByClassName("product_count")[0];
+        var num_el = document.getElementsByClassName("num")[0];
+        product_count_el.addEventListener("mousemove", function () {
+          //   console.log(this.value);
+          num_el.innerHTML = this.value;
+        });
+
+        var the_form_el = document.getElementById("the_form");
+        the_form_el.addEventListener("reset", function () {
+          //   console.log("reset");
+          num_el.innerHTML = num_el.getAttribute("data-default"); //按下清空後變成5
+        });
+
+        //submit事件
+        the_form_el.addEventListener("submit", function (e) {
+          let account_el = document.getElementById("account");
+          let email_el = document.getElementById("email");
+          let card_str = ""; //因有四個欄位串接先存在這
+          let cards = document.getElementsByClassName("card");
+          for (let i = 0; i < cards.length; i++) {
+            // console.log(cards[0].value);
+            // card_str = card_str + cards[i].value; "1234+5678"
+            card_str += cards[i].value;
+          }
+          //   console.log(card_str);
+
+          let sent_data = true;
+
+          //驗證   //如果沒有輸入資料就會出現紅框
+          if (account_el.value == "") {
+            account_el.classList.add("-error");
+            sent_data = false;
+          } else {
+            account_el.classList.remove("-error");
+          }
+          if (is.email(email_el.value)) {
+            email_el.classList.remove("-error");
+          } else {
+            email_el.classList.add("-error");
+            sent_data = false;
+          }
+
+          if (is.creditCard(card_str)) {
+            // console.log("符合");
+            for (let i = 0; i < cards.length; i++) {
+              cards[i].classList.remove("-error");
+            }
+          } else {
+            // console.log("不符合");
+            for (let i = 0; i < cards.length; i++) {
+              cards[i].classList.add("-error");
+            }
+
+            sent_data = false;
+          }
+
+          if (!sent_data) {
+            e.preventDefault(); //不等於就不會送出
+          }
+        });
+      });
+
+      // 二.資料送出時(submit)，資料驗證：
+      // 1.帳號必填
+      // 2.email：符合格式
+      // 3.信用卡卡號：符合格式
+    </script>
+  </body>
+</html>

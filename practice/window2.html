@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <h1>開啟的視窗</h1>
+    <input type="text" id="other_text" />
+    <button type="button" id="btn">按鈕</button>
+
+    <script>
+      var btn = document.getElementById("btn");
+      btn.addEventListener("click", function () {
+        // 取得輸入的值
+        var my_value = document.getElementById("other_text").value;
+
+        // 原視窗
+        var parent_window = window.opener;
+
+        // 將 my_value 帶回原視窗，然後放到 id="my_text" 欄位裡
+        parent_window.document.getElementById("my_text").value = my_value;
+
+        // 關閉目前的視窗
+        window.close();
+      });
+    </script>
+  </body>
+</html>

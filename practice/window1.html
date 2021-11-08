@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <h1>原視窗</h1>
+    <input type="text" id="my_text" />
+    <button type="button" id="btn">按鈕</button>
+
+    <script>
+      var btn = document.getElementById("btn"); // btn 指向到 id="btn" 元素
+      btn.addEventListener("click", function () {
+        // click 事件綁定
+
+        // 開啟視窗，連到 window2.html 頁面
+        window.open("./window2.html", "_blank", "width=800, height=500");
+      });
+    </script>
+  </body>
+</html>
